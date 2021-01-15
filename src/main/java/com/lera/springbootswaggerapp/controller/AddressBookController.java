@@ -1,6 +1,8 @@
 package com.lera.springbootswaggerapp.controller;
 
 import com.lera.springbootswaggerapp.model.Contact;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -19,7 +21,10 @@ public class AddressBookController {
     }
 
     @GetMapping("/{contactId}")
-    public Contact getContact(@PathVariable Integer contactId) {
+    @ApiOperation(value = "Finds Contact by contactId",
+            notes = "Provide contactId to look up specific contact from the address book",
+            response = Contact.class)
+    public Contact getContact(@ApiParam(value = "Id value for the contact you want to retrieve") @PathVariable Integer contactId) {
         return contacts.get(contactId);
     }
 
